@@ -1,0 +1,13 @@
+GET  /ex1/plain          controllers.Exercise1Controller.plain
+GET  /ex1/async          controllers.Exercise1Controller.async
+GET  /ex1/json           controllers.Exercise1Controller.json
+POST /ex1/json/echo      controllers.Exercise1Controller.jsonEcho
+POST /ex1/json/async     controllers.Exercise1Controller.jsonAsync
+
+GET  /ex2/logged/request controllers.Exercise2Controller.loggedRequest
+GET  /ex2/logged/result  controllers.Exercise2Controller.loggedResult
+GET  /ex2/authenticated  controllers.Exercise2Controller.authenticated
+GET  /ex2/traced         controllers.Exercise2Controller.traced
+
+POST /ex3/numbers        controllers.Exercise3Controller.readNumbers
+POST /ex3/numbers/echo   controllers.Exercise3Controller.echoNumbers
