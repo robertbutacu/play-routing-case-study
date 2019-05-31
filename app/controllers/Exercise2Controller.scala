@@ -8,10 +8,10 @@ import play.api.mvc._
 import scala.concurrent.{ExecutionContext, Future}
 
 class Exercise2Controller @Inject() (
-  val loggedAction1: LoggedAction1[AnyContent],
-  val loggedAction2: LoggedAction2[AnyContent],
-  val tracedAction: TracedAction[AnyContent],
-  val authenticatedAction: AuthenticatedAction[AnyContent],
+  val loggedAction1: LoggedAction1,
+  val loggedAction2: LoggedAction2,
+  val tracedAction: TracedAction,
+  val authenticatedAction: AuthenticatedAction,
   val controllerComponents: ControllerComponents
 ) extends BaseController {
   /** Log the URL and headers from the request */
@@ -51,7 +51,7 @@ class Exercise2Controller @Inject() (
     }
 }
 
-class LoggedAction1[B] @Inject() (parser: BodyParser[B])(implicit ec: ExecutionContext, mat: Materializer) extends ActionBuilderImpl[B](parser) {
+class LoggedAction1 @Inject() (parser: BodyParsers.Default)(implicit ec: ExecutionContext, mat: Materializer) extends ActionBuilderImpl[AnyContent](parser) {
   override def invokeBlock[A](request: Request[A], block: Request[A] => Future[Result]): Future[Result] = {
     println(requestToString(request))
     block(request)
@@ -67,7 +67,7 @@ class LoggedAction1[B] @Inject() (parser: BodyParser[B])(implicit ec: ExecutionC
   }
 }
 
-class TracedAction[B] @Inject() (parser: BodyParser[B])(implicit ec: ExecutionContext, mat: Materializer) extends ActionBuilderImpl[B](parser) {
+class TracedAction @Inject() (parser: BodyParsers.Default)(implicit ec: ExecutionContext, mat: Materializer) extends ActionBuilderImpl[AnyContent](parser) {
   override def invokeBlock[A](request: Request[A], block: Request[A] => Future[Result]): Future[Result] = {
     request.headers.get("Trace-Id") match {
       case Some(traceId) =>
@@ -80,15 +80,15 @@ class TracedAction[B] @Inject() (parser: BodyParser[B])(implicit ec: ExecutionCo
 
 case class AuthenticatedRequest[B](request: Request[B], authHeader: String)
 
-class AuthenticatedAction[B](val parser: BodyParser[B])(implicit val executionContext: ExecutionContext) extends ActionBuilder[AuthenticatedRequest, B] with Results {
+class AuthenticatedAction @Inject() (val parser: BodyParsers.Default)(implicit val executionContext: ExecutionContext) extends ActionBuilder[AuthenticatedRequest, AnyContent] with Results {
   override def invokeBlock[A](request: Request[A], block: AuthenticatedRequest[A] => Future[Result]): Future[Result] =
     request.headers.get("Authorization") match {
-      case Some(auth) => block(request.map(body => (auth, body)))
+      case Some(auth) => block(AuthenticatedRequest(request, auth))
       case None       => Future.successful(Unauthorized)
     }
 }
 
-class LoggedAction2[B] @Inject() (parser: BodyParser[B])(implicit ec: ExecutionContext, mat: Materializer) extends ActionBuilderImpl[B](parser) {
+class LoggedAction2 @Inject() (parser: BodyParsers.Default)(implicit ec: ExecutionContext, mat: Materializer) extends ActionBuilderImpl[AnyContent](parser) {
   override def invokeBlock[A](request: Request[A], block: Request[A] => Future[Result]): Future[Result] = {
     println(requestToString(request))
 

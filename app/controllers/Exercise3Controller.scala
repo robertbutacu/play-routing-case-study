@@ -28,7 +28,7 @@ class Exercise3Controller @Inject() (
     */
   def readNumbers =
     Action(intListBodyParser) { request =>
-      Ok(request.body.sum)
+      Ok(request.body.sum.toString)
     }
 
   /** Assume the user will post a list of numbers of the form "1 2 3 etc...".
