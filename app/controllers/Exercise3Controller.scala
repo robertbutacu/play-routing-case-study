@@ -3,11 +3,9 @@ package controllers
 import javax.inject.Inject
 import play.api.mvc._
 
-import scala.concurrent.ExecutionContext
-
 class Exercise3Controller @Inject() (
   val controllerComponents: ControllerComponents
-)(implicit ec: ExecutionContext) extends BaseController {
+) extends BaseController {
   /** Assume the user will post a list of numbers of the form "1 2 3 etc...".
     * - Use a custom BodyParser to parse this as a List[Int].
     * - Add the numbers and return the result.

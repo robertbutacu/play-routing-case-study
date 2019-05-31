@@ -3,13 +3,17 @@ package controllers
 import javax.inject.Inject
 import play.api.mvc._
 
-import scala.concurrent.ExecutionContext
-
 class Exercise1Controller @Inject() (
   val controllerComponents: ControllerComponents
-)(implicit ec: ExecutionContext) extends BaseController {
+) extends BaseController {
   /** A plain action. Nothing to do here. */
   def plain =
+    Action {
+      Ok("TODO: Complete")
+    }
+
+  /** Read the headers from the request and return them to the user. */
+  def headers =
     Action {
       Ok("TODO: Complete")
     }

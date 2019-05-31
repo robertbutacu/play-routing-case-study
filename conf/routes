@@ -1,4 +1,5 @@
 GET  /ex1/plain          controllers.Exercise1Controller.plain
+GET  /ex1/headers        controllers.Exercise1Controller.headers
 GET  /ex1/async          controllers.Exercise1Controller.async
 GET  /ex1/json           controllers.Exercise1Controller.json
 POST /ex1/json/echo      controllers.Exercise1Controller.jsonEcho

@@ -3,11 +3,9 @@ package controllers
 import javax.inject.Inject
 import play.api.mvc._
 
-import scala.concurrent.ExecutionContext
-
 class Exercise2Controller @Inject() (
   val controllerComponents: ControllerComponents
-)(implicit ec: ExecutionContext) extends BaseController {
+) extends BaseController {
   /** Log the URL and headers from the request */
   def loggedRequest =
     Action {
