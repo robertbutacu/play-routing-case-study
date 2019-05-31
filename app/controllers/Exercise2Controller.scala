@@ -12,6 +12,12 @@ class Exercise2Controller @Inject() (
       Ok("TODO: Complete")
     }
 
+  /** Read a `Trace-Id` header and pass it on in the response. */
+  def traced =
+    Action {
+      Ok("TODO: Complete")
+    }
+
   /** Read the Authorization header:
     * - if it's present, return a 200 containing the header value;
     * - if it's missing, return a 403.
@@ -27,9 +33,9 @@ class Exercise2Controller @Inject() (
       Ok("TODO: Complete")
     }
 
-  /** Read a `Trace-Id` header and pass it on in the response. */
-  def traced =
+  /** Log the request and response, trace, and authenticate in one go */
+  def kitchenSink =
     Action {
-      Ok("TODO: Complete")
+      Ok("Yay")
     }
 }
