@@ -12,3 +12,9 @@ GET  /ex2/traced         controllers.Exercise2Controller.traced
 
 POST /ex3/numbers        controllers.Exercise3Controller.readNumbers
 POST /ex3/numbers/echo   controllers.Exercise3Controller.echoNumbers
+
+GET  /ex4/add/:a/:b      controllers.Exercise4Controller.add(a: Int, b: Int)
+GET  /ex4/add            controllers.Exercise4Controller.add(a: Int, b: Int)
+# TODO: Uncomment these one by one for exercise 4:
+# GET  /ex4/interval/:a/:b controllers.Exercise4Controller.interval(from: LocalDate, to: LocalDate)
+# GET  /ex4/interval       controllers.Exercise4Controller.interval(from: LocalDate, to: LocalDate)
