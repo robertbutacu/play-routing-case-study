@@ -12,4 +12,5 @@ libraryDependencies ++= Seq(
 
 routesImport ++= Seq(
   "java.time.LocalDate",
+  "controllers.UserId"
 )

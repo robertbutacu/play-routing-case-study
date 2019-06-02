@@ -15,6 +15,7 @@ POST /ex3/numbers/echo   controllers.Exercise3Controller.echoNumbers
 
 GET  /ex4/add/:a/:b      controllers.Exercise4Controller.add(a: Int, b: Int)
 GET  /ex4/add            controllers.Exercise4Controller.add(a: Int, b: Int)
+GET  /ex4/user/:id       controllers.Exercise4Controller.testAction(id: UserId)
 # TODO: Uncomment these one by one for exercise 4:
 # GET  /ex4/interval/:a/:b controllers.Exercise4Controller.interval(from: LocalDate, to: LocalDate)
 # GET  /ex4/interval       controllers.Exercise4Controller.interval(from: LocalDate, to: LocalDate)
